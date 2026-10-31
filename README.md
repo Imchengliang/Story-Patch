@@ -17,7 +17,6 @@ apps/api          FastAPI backend (Python 3.12, uv)
 apps/web          Next.js frontend (pnpm workspace)
 packages/contracts OpenAPI contract and the types generated from openapi.json
 infra/            docker-compose (Postgres / Neo4j / MinIO / Valkey) + Neo4j constraints
-docs/             method alignment notes
 ```
 
 ## Setup
