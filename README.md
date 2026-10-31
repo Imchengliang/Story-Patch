@@ -46,7 +46,9 @@ CI (`.github/workflows/ci.yml`) 会跑同一套检查,并强制 `openapi.json` �
 
 ## 数据与授权说明
 
-- `data/` 下的来源文本、抽取结果与索引均被 `.gitignore` 排除,仓库中只保留 `.gitkeep`。
+- `data/` 只提交目录占位(`.gitkeep`)、实体别名表 `data/plot/aliases.yaml` 与合成示例输入
+  `data/eval/*.example.jsonl`、`data/eval/sample_gaps.jsonl`;来源文本、抽取结果、索引与实验产物全部由
+  `.gitignore` 排除。
 - 测试用的 `apps/api/tests/fixtures/` 是为对齐数据格式而手写的合成样例,不含任何第三方语料原文。
 - 研究里用到的 STAGE 数据集未附带许可证(仅限科研用途)、DramaBench 为 MIT;两者都不通过本仓库分发,
   请按各自条款自行获取。

@@ -39,3 +39,6 @@ data/corpus/*
 
 # OS
 .DS_Store
+
+# TypeScript build info
+*.tsbuildinfo

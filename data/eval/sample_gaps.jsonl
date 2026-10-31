@@ -1,0 +1,10 @@
+{"id": "g1", "gold_type": "A", "predicted_type": "A", "evidence_found": true}
+{"id": "g2", "gold_type": "A", "predicted_type": "A", "evidence_found": true}
+{"id": "g3", "gold_type": "A", "predicted_type": "A", "evidence_found": true}
+{"id": "g4", "gold_type": "A", "predicted_type": "A", "evidence_found": false}
+{"id": "g5", "gold_type": "B", "predicted_type": "B", "evidence_found": true}
+{"id": "g6", "gold_type": "B", "predicted_type": "B", "evidence_found": true}
+{"id": "g7", "gold_type": "B", "predicted_type": "A", "evidence_found": true}
+{"id": "g8", "gold_type": "C", "predicted_type": "C", "evidence_found": true}
+{"id": "g9", "gold_type": "C", "predicted_type": "C", "evidence_found": true}
+{"id": "g10", "gold_type": "C", "predicted_type": "C", "evidence_found": true}

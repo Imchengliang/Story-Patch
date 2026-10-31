@@ -1,0 +1,19 @@
+# Canonical English names with source-language aliases.
+# Matching normalizes traditional -> simplified and strips punctuation,
+# so 寶玉 / 宝玉 / Baoyu all resolve to one canonical name.
+characters:
+  - canonical: Baoyu
+    aliases: [宝玉, 寶玉, 宝二爷, 寶二爺]
+    language: zh
+  - canonical: Daiyu
+    aliases: [黛玉, 林黛玉]
+    language: zh
+  - canonical: Baochai
+    aliases: [宝钗, 寶釵, 薛宝钗, 薛寶釵]
+    language: zh
+  - canonical: Alice
+    aliases: [爱丽丝, 愛麗絲]
+    language: en
+  - canonical: Bob
+    aliases: [鲍勃, 鮑勃]
+    language: en
