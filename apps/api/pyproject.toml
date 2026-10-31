@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "canonguard"
+version = "0.1.0"
+description = "CanonGuard diagnosis workbench"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+  "pydantic>=2.10.0",
+  "pydantic-settings>=2.7.0",
+  "sqlalchemy>=2.0.36",
+  "alembic>=1.14.0",
+  "psycopg[binary]>=3.2.3",
+  "neo4j>=5.27.0",
+  "minio>=7.2.12",
+  "structlog>=24.4.0",
+  "sse-starlette>=2.1.3",
+  "litellm>=1.55.0",
+  "tenacity>=9.0.0",
+  "langgraph>=0.2.60",
+  "langgraph-checkpoint-postgres>=2.0.0",
+  "opencc-python-reimplemented>=0.1.7",
+  "cn2an>=0.5.24",
+  "pyyaml>=6.0.2",
+  "z3-solver>=4.13.0",
+  "graphiti-core>=0.31.2",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3.4",
+  "pytest-asyncio>=0.24.0",
+  "httpx>=0.28.1",
+  "ruff>=0.8.4",
+  "mypy>=1.13.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["litellm.*", "langgraph.*", "minio.*", "neo4j.*", "cn2an.*", "opencc.*", "dotenv.*", "requests.*", "yaml.*", "z3.*", "graphiti_core.*"]
+ignore_missing_imports = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["canonguard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"

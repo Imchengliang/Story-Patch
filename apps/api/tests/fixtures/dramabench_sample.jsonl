@@ -1,0 +1,3 @@
+{"id":"script_0001","title":"示例一","description":"一个关于选择的故事。","context":"Title: 示例一\nDescription: 一个关于选择的故事。\n\nINT. ROOM - NIGHT\nALICE\n我该怎么办？","continuation":"BOB\n先坐下，再说。","stats":{"total_lines":8,"context_lines":4,"continuation_lines":4,"split_ratio":"50.0%","split_type":"middle","split_point":4}}
+
+{"id":"script_0002","title":"示例二","description":"","context":"场景一 书房 夜\n宝玉独坐。","continuation":"黛玉推门而入。","stats":{}}

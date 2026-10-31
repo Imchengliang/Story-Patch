@@ -1,0 +1,41 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.db
+*.sqlite3
+
+# Node
+node_modules/
+.next/
+out/
+.turbo/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+
+# Data artifacts
+data/sources/*
+!data/sources/.gitkeep
+data/ontology/*
+!data/ontology/.gitkeep
+data/eval/*.local.jsonl
+!data/eval/.gitkeep
+data/extractions/*
+!data/extractions/.gitkeep
+data/indexes/*
+!data/indexes/.gitkeep
+data/evaluations/*
+!data/evaluations/.gitkeep
+
+# Third-party corpora (copyrighted / research-only; never commit)
+data/corpus/*
+!data/corpus/.gitkeep
+
+# OS
+.DS_Store

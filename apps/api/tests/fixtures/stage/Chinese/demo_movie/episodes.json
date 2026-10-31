@@ -1,0 +1,19 @@
+{
+  "episodes": [
+    {
+      "episode_id": "ep1",
+      "description": "宝玉与黛玉因旧帕起争执。",
+      "events": ["宝玉赠帕", "黛玉多心"],
+      "scenes": [1],
+      "characters": ["宝玉", "黛玉"],
+      "narrative_function": "relationship_turn"
+    },
+    {
+      "episode_id": "ep2",
+      "summary": "众人相聚，气氛缓和。",
+      "events": [{ "description": "众人说笑" }],
+      "scene_refs": [2],
+      "characters": [{ "name": "宝玉" }]
+    }
+  ]
+}

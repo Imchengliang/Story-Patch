@@ -1,0 +1,10 @@
+[
+  {
+    "subject_id": "ep_a",
+    "object_id": "ep_b",
+    "relation_type": "causes",
+    "original_relation_type": "causes",
+    "weight": 0.7,
+    "effective_weight": 0.6
+  }
+]

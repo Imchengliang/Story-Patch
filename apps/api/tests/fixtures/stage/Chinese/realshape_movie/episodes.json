@@ -1,0 +1,18 @@
+[
+  {
+    "id": "ep_a",
+    "name": "灯下独坐",
+    "description": "宝玉独坐，心事重重。",
+    "source_documents": ["scene_1_part_1"],
+    "related_events": ["宝玉独坐"],
+    "related_occasions": []
+  },
+  {
+    "id": "ep_b",
+    "name": "黛玉到访",
+    "description": "黛玉推门而入，二人相对。",
+    "source_documents": ["scene_2_part_1"],
+    "related_events": ["黛玉到访", "二人相对"],
+    "related_occasions": []
+  }
+]

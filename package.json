@@ -1,0 +1,12 @@
+{
+  "name": "canonguard",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev:web": "pnpm --dir apps/web dev",
+    "build:web": "pnpm --dir apps/web build",
+    "typecheck": "pnpm --dir apps/web typecheck",
+    "lint": "pnpm --dir apps/web lint",
+    "contracts": "pnpm --dir packages/contracts generate"
+  }
+}

@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --all-groups --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy canonguard
+      - run: uv run pytest
+      - run: uv run python scripts/export_openapi.py ../../packages/contracts/openapi.json
+      - run: git diff --exit-code ../../packages/contracts/openapi.json
+
+  frontend:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --dir packages/contracts generate
+      - run: git diff --exit-code packages/contracts/src/schema.d.ts
+      - run: pnpm --dir packages/contracts typecheck
+      - run: pnpm --dir apps/web typecheck
+      - run: pnpm --dir apps/web lint
+      - run: pnpm --dir apps/web build

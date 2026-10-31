@@ -1,0 +1,2091 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CanonGuard",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health",
+        "operationId": "health_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Health V1 Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/runs/demo": {
+      "post": {
+        "tags": [
+          "runs"
+        ],
+        "summary": "Create Demo Run",
+        "operationId": "create_demo_run_v1_runs_demo_post",
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Create Demo Run V1 Runs Demo Post"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/runs/{run_id}": {
+      "get": {
+        "tags": [
+          "runs"
+        ],
+        "summary": "Get Run",
+        "operationId": "get_run_v1_runs__run_id__get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Get Run V1 Runs  Run Id  Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/runs/{run_id}/events": {
+      "get": {
+        "tags": [
+          "runs"
+        ],
+        "summary": "Run Events",
+        "operationId": "run_events_v1_runs__run_id__events_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plot/suggest": {
+      "post": {
+        "tags": [
+          "plot"
+        ],
+        "summary": "Suggest Plot",
+        "operationId": "suggest_plot_v1_plot_suggest_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuggestResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plot/suggest/stream": {
+      "post": {
+        "tags": [
+          "plot"
+        ],
+        "summary": "Suggest Plot Stream",
+        "operationId": "suggest_plot_stream_v1_plot_suggest_stream_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuggestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plot/feedback": {
+      "post": {
+        "tags": [
+          "plot"
+        ],
+        "summary": "Submit Feedback",
+        "operationId": "submit_feedback_v1_plot_feedback_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FeedbackRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plot/beats": {
+      "post": {
+        "tags": [
+          "plot"
+        ],
+        "summary": "Expand Suggestion",
+        "operationId": "expand_suggestion_v1_plot_beats_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BeatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BeatSequence"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plot/feedback/summary": {
+      "get": {
+        "tags": [
+          "plot"
+        ],
+        "summary": "Feedback Summary",
+        "operationId": "feedback_summary_v1_plot_feedback_summary_get",
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "table",
+                "jsonl"
+              ],
+              "type": "string",
+              "default": "table",
+              "title": "Source"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/plot/index": {
+      "get": {
+        "tags": [
+          "plot"
+        ],
+        "summary": "Index Info",
+        "operationId": "index_info_v1_plot_index_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IndexInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads": {
+      "post": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Create Thread",
+        "operationId": "create_thread_v1_threads_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateThreadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "List Threads",
+        "operationId": "list_threads_v1_threads_get",
+        "parameters": [
+          {
+            "name": "include_archived",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Include Archived"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ThreadOut"
+                  },
+                  "title": "Response List Threads V1 Threads Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}": {
+      "get": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Get Thread",
+        "operationId": "get_thread_v1_threads__thread_id__get",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Patch Thread",
+        "operationId": "patch_thread_v1_threads__thread_id__patch",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThreadPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Delete Thread",
+        "description": "Soft delete: keep runs/messages for audit, hide from the default list.",
+        "operationId": "delete_thread_v1_threads__thread_id__delete",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}/usage": {
+      "get": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Thread Usage",
+        "operationId": "thread_usage_v1_threads__thread_id__usage_get",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadUsage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}/messages": {
+      "get": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "List Messages",
+        "operationId": "list_messages_v1_threads__thread_id__messages_get",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MessageOut"
+                  },
+                  "title": "Response List Messages V1 Threads  Thread Id  Messages Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Post Message",
+        "operationId": "post_message_v1_threads__thread_id__messages_post",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TurnRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TurnAccepted"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}/events": {
+      "get": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Thread Events",
+        "operationId": "thread_events_v1_threads__thread_id__events_get",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}/story/ingest": {
+      "post": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Ingest Story",
+        "operationId": "ingest_story_v1_threads__thread_id__story_ingest_post",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoryIngestResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}/replay": {
+      "post": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Replay Thread",
+        "operationId": "replay_thread_v1_threads__thread_id__replay_post",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          },
+          {
+            "name": "source_run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Source Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplayAccepted"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/threads/{thread_id}/stuck-point": {
+      "patch": {
+        "tags": [
+          "threads"
+        ],
+        "summary": "Patch Stuck Point",
+        "operationId": "patch_stuck_point_v1_threads__thread_id__stuck_point_patch",
+        "parameters": [
+          {
+            "name": "thread_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Thread Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StuckPointPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThreadOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Beat": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "maximum": 3.0,
+            "minimum": 1.0,
+            "title": "Index"
+          },
+          "next_node": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Next Node"
+          },
+          "character_behavior_logic": {
+            "type": "string",
+            "title": "Character Behavior Logic",
+            "default": ""
+          },
+          "emotional_tone": {
+            "type": "string",
+            "title": "Emotional Tone",
+            "default": ""
+          },
+          "corpus_reference": {
+            "type": "string",
+            "title": "Corpus Reference",
+            "default": ""
+          },
+          "reference_quote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Quote"
+          },
+          "transfer_rationale": {
+            "type": "string",
+            "title": "Transfer Rationale",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "index",
+          "next_node"
+        ],
+        "title": "Beat"
+      },
+      "BeatRequest": {
+        "properties": {
+          "stuck": {
+            "$ref": "#/components/schemas/StuckPoint"
+          },
+          "suggestion": {
+            "$ref": "#/components/schemas/PlotSuggestion"
+          },
+          "scene_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Scene Id"
+          },
+          "thread_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thread Id"
+          },
+          "source_run_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Run Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stuck",
+          "suggestion",
+          "scene_id"
+        ],
+        "title": "BeatRequest"
+      },
+      "BeatSequence": {
+        "properties": {
+          "suggestion_id": {
+            "type": "string",
+            "title": "Suggestion Id"
+          },
+          "beats": {
+            "items": {
+              "$ref": "#/components/schemas/Beat"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 2,
+            "title": "Beats"
+          },
+          "risk": {
+            "type": "string",
+            "title": "Risk",
+            "default": ""
+          },
+          "still_unresolved": {
+            "type": "string",
+            "title": "Still Unresolved",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "suggestion_id",
+          "beats"
+        ],
+        "title": "BeatSequence"
+      },
+      "CreateThreadRequest": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "default": ""
+          },
+          "story_state": {
+            "type": "string",
+            "title": "Story State",
+            "default": ""
+          },
+          "language": {
+            "type": "string",
+            "title": "Language",
+            "default": "unknown"
+          },
+          "characters": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Characters"
+          }
+        },
+        "type": "object",
+        "title": "CreateThreadRequest"
+      },
+      "FeedbackRequest": {
+        "properties": {
+          "suggestion_id": {
+            "type": "string",
+            "title": "Suggestion Id",
+            "default": ""
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "adopt",
+              "modify",
+              "reject"
+            ],
+            "title": "Decision"
+          },
+          "reason_code": {
+            "type": "string",
+            "enum": [
+              "structure_mismatch",
+              "character_mismatch",
+              "world_conflict",
+              "cliche",
+              "low_novelty",
+              "other"
+            ],
+            "title": "Reason Code",
+            "default": "other"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "default": ""
+          },
+          "stuck_question": {
+            "type": "string",
+            "title": "Stuck Question",
+            "default": ""
+          },
+          "corpus_reference": {
+            "type": "string",
+            "title": "Corpus Reference",
+            "default": ""
+          },
+          "next_node": {
+            "type": "string",
+            "title": "Next Node",
+            "default": ""
+          },
+          "thread_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thread Id"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision"
+        ],
+        "title": "FeedbackRequest"
+      },
+      "FeedbackSummary": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "decisions": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Decisions"
+          },
+          "reasons": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Reasons"
+          },
+          "adoption_rate": {
+            "type": "number",
+            "title": "Adoption Rate"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "decisions",
+          "reasons",
+          "adoption_rate"
+        ],
+        "title": "FeedbackSummary"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "IndexInfo": {
+        "properties": {
+          "scenes": {
+            "type": "integer",
+            "title": "Scenes"
+          },
+          "embedding_dim": {
+            "type": "integer",
+            "title": "Embedding Dim"
+          },
+          "embed_model": {
+            "type": "string",
+            "title": "Embed Model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "scenes",
+          "embedding_dim",
+          "embed_model"
+        ],
+        "title": "IndexInfo"
+      },
+      "LlmChoice": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "qwen",
+              "deepseek",
+              "custom"
+            ],
+            "title": "Provider",
+            "default": "auto"
+          },
+          "base_url": {
+            "type": "string",
+            "title": "Base Url",
+            "default": ""
+          },
+          "model": {
+            "type": "string",
+            "title": "Model",
+            "default": ""
+          },
+          "api_key": {
+            "type": "string",
+            "title": "Api Key",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "LlmChoice"
+      },
+      "MessageOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "seq": {
+            "type": "integer",
+            "title": "Seq"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payload"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "seq",
+          "role",
+          "content"
+        ],
+        "title": "MessageOut"
+      },
+      "PlotSuggestion": {
+        "properties": {
+          "next_node": {
+            "type": "string",
+            "title": "Next Node"
+          },
+          "character_behavior_logic": {
+            "type": "string",
+            "title": "Character Behavior Logic"
+          },
+          "emotional_tone": {
+            "type": "string",
+            "title": "Emotional Tone"
+          },
+          "corpus_reference": {
+            "type": "string",
+            "title": "Corpus Reference"
+          },
+          "reference_quote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reference Quote"
+          },
+          "transfer_rationale": {
+            "type": "string",
+            "title": "Transfer Rationale"
+          },
+          "fit_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Fit Score",
+            "default": 0.5
+          },
+          "novelty_score": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Novelty Score",
+            "default": 0.5
+          }
+        },
+        "type": "object",
+        "required": [
+          "next_node",
+          "character_behavior_logic",
+          "emotional_tone",
+          "corpus_reference",
+          "transfer_rationale"
+        ],
+        "title": "PlotSuggestion"
+      },
+      "PrecedentSummary": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "scene",
+            "title": "Kind",
+            "default": "scene"
+          },
+          "work_title": {
+            "type": "string",
+            "title": "Work Title"
+          },
+          "scene_heading": {
+            "type": "string",
+            "title": "Scene Heading"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "excerpt": {
+            "type": "string",
+            "title": "Excerpt",
+            "default": ""
+          },
+          "highlight": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Highlight"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons"
+          }
+        },
+        "type": "object",
+        "required": [
+          "work_title",
+          "scene_heading",
+          "score"
+        ],
+        "title": "PrecedentSummary"
+      },
+      "ReplayAccepted": {
+        "properties": {
+          "thread_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Thread Id"
+          },
+          "source_run_id": {
+            "type": "string",
+            "title": "Source Run Id"
+          },
+          "run_id": {
+            "type": "string",
+            "title": "Run Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "thread_id",
+          "source_run_id",
+          "run_id"
+        ],
+        "title": "ReplayAccepted"
+      },
+      "StoryIngestResult": {
+        "properties": {
+          "facts": {
+            "type": "integer",
+            "title": "Facts"
+          },
+          "group_id": {
+            "type": "string",
+            "title": "Group Id",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "facts"
+        ],
+        "title": "StoryIngestResult"
+      },
+      "StuckCharacter": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "function": {
+            "type": "string",
+            "enum": [
+              "protagonist",
+              "antagonist",
+              "ally",
+              "mentor",
+              "love_interest",
+              "foil",
+              "comic_relief",
+              "other"
+            ],
+            "title": "Function",
+            "default": "other"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "StuckCharacter"
+      },
+      "StuckPoint": {
+        "properties": {
+          "story_state": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Story State"
+          },
+          "genre": {
+            "type": "string",
+            "title": "Genre",
+            "default": ""
+          },
+          "characters": {
+            "items": {
+              "$ref": "#/components/schemas/StuckCharacter"
+            },
+            "type": "array",
+            "title": "Characters"
+          },
+          "current_node": {
+            "type": "string",
+            "title": "Current Node",
+            "default": ""
+          },
+          "stuck_question": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Stuck Question"
+          },
+          "constraints": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Constraints"
+          },
+          "desired_effect": {
+            "type": "string",
+            "title": "Desired Effect",
+            "default": ""
+          },
+          "narrative_functions": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "setup",
+                "inciting_incident",
+                "escalation",
+                "reveal",
+                "reversal",
+                "relationship_turn",
+                "breather",
+                "crisis",
+                "climax",
+                "resolution",
+                "payoff",
+                "other"
+              ]
+            },
+            "type": "array",
+            "title": "Narrative Functions"
+          },
+          "value_polarity": {
+            "type": "string",
+            "enum": [
+              "positive",
+              "negative",
+              "ironic",
+              "mixed",
+              "unclear"
+            ],
+            "title": "Value Polarity",
+            "default": "unclear"
+          }
+        },
+        "type": "object",
+        "required": [
+          "story_state",
+          "stuck_question"
+        ],
+        "title": "StuckPoint"
+      },
+      "StuckPointPatch": {
+        "properties": {
+          "genre": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Genre"
+          },
+          "current_node": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Node"
+          },
+          "stuck_question": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stuck Question"
+          },
+          "constraints": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Constraints"
+          },
+          "desired_effect": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Desired Effect"
+          },
+          "narrative_functions": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Narrative Functions"
+          },
+          "value_polarity": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "positive",
+                  "negative",
+                  "ironic",
+                  "mixed",
+                  "unclear"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value Polarity"
+          }
+        },
+        "type": "object",
+        "title": "StuckPointPatch"
+      },
+      "SuggestRequest": {
+        "properties": {
+          "story_state": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Story State"
+          },
+          "stuck_question": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Stuck Question"
+          },
+          "genre": {
+            "type": "string",
+            "title": "Genre",
+            "default": ""
+          },
+          "characters": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Characters"
+          },
+          "constraints": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Constraints"
+          },
+          "desired_effect": {
+            "type": "string",
+            "title": "Desired Effect",
+            "default": ""
+          },
+          "precedents": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Precedents",
+            "default": 3
+          },
+          "candidate_k": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Candidate K",
+            "default": 20
+          },
+          "mmr_lambda": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Mmr Lambda",
+            "default": 0.7
+          },
+          "llm": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LlmChoice"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "story_state",
+          "stuck_question"
+        ],
+        "title": "SuggestRequest"
+      },
+      "SuggestResponse": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "title": "Run Id",
+            "default": ""
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "stuck_point": {
+            "$ref": "#/components/schemas/StuckPoint"
+          },
+          "precedents": {
+            "items": {
+              "$ref": "#/components/schemas/PrecedentSummary"
+            },
+            "type": "array",
+            "title": "Precedents"
+          },
+          "suggestions": {
+            "items": {
+              "$ref": "#/components/schemas/PlotSuggestion"
+            },
+            "type": "array",
+            "title": "Suggestions"
+          },
+          "story_facts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Story Facts"
+          },
+          "story_status": {
+            "type": "string",
+            "enum": [
+              "ready",
+              "building",
+              "absent"
+            ],
+            "title": "Story Status",
+            "default": "absent"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provider",
+          "model",
+          "stuck_point",
+          "precedents",
+          "suggestions"
+        ],
+        "title": "SuggestResponse"
+      },
+      "ThreadDetail": {
+        "properties": {
+          "thread": {
+            "$ref": "#/components/schemas/ThreadOut"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/MessageOut"
+            },
+            "type": "array",
+            "title": "Messages"
+          },
+          "last_run": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Run"
+          }
+        },
+        "type": "object",
+        "required": [
+          "thread",
+          "messages"
+        ],
+        "title": "ThreadDetail"
+      },
+      "ThreadOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "story_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Story Id"
+          },
+          "archived": {
+            "type": "boolean",
+            "title": "Archived",
+            "default": false
+          },
+          "active_stuck": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active Stuck"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ThreadOut"
+      },
+      "ThreadPatch": {
+        "properties": {
+          "archived": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Archived"
+          }
+        },
+        "type": "object",
+        "title": "ThreadPatch"
+      },
+      "ThreadUsage": {
+        "properties": {
+          "thread": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Thread"
+          },
+          "runs": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Runs"
+          },
+          "limits": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Limits"
+          }
+        },
+        "type": "object",
+        "required": [
+          "thread",
+          "runs",
+          "limits"
+        ],
+        "title": "ThreadUsage"
+      },
+      "TurnAccepted": {
+        "properties": {
+          "thread_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Thread Id"
+          },
+          "run_id": {
+            "type": "string",
+            "title": "Run Id"
+          },
+          "message_seq": {
+            "type": "integer",
+            "title": "Message Seq"
+          },
+          "streaming": {
+            "type": "boolean",
+            "const": true,
+            "title": "Streaming",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": [
+          "thread_id",
+          "run_id",
+          "message_seq"
+        ],
+        "title": "TurnAccepted"
+      },
+      "TurnRequest": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Content"
+          },
+          "story_state": {
+            "type": "string",
+            "title": "Story State",
+            "default": ""
+          },
+          "stuck_question": {
+            "type": "string",
+            "title": "Stuck Question",
+            "default": ""
+          },
+          "genre": {
+            "type": "string",
+            "title": "Genre",
+            "default": ""
+          },
+          "characters": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Characters"
+          },
+          "constraints": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Constraints"
+          },
+          "desired_effect": {
+            "type": "string",
+            "title": "Desired Effect",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "content"
+        ],
+        "title": "TurnRequest"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

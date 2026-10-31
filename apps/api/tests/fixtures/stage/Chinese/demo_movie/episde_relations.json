@@ -1,0 +1,5 @@
+{
+  "relations": [
+    { "source": "ep1", "target": "ep2", "type": "causes", "confidence": 0.8 }
+  ]
+}

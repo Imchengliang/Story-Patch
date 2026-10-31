@@ -1,0 +1,14 @@
+[
+  {
+    "name": "宝玉",
+    "role": "protagonist",
+    "description": "多情公子，重情而不善自处。",
+    "relations": ["黛玉"]
+  },
+  {
+    "name": "黛玉",
+    "function": "love_interest",
+    "summary": "敏感多心，才情过人。",
+    "relationships": [{ "name": "宝玉" }]
+  }
+]
