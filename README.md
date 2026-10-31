@@ -1,58 +1,64 @@
 # Story-Patch (CanonGuard)
 
-CanonGuard 是一个叙事一致性(Narrative Canon)研究与原型系统:把剧本/小说拆解为 PlotUnit 与场景级事实,
-在临时知识图谱上审计设定冲突,并为写作者的"卡文点"提供可回放的续写建议。
+CanonGuard is a narrative-consistency research prototype. It decomposes scripts and novels into
+PlotUnits and scene-level facts, audits setting contradictions over a temporal knowledge graph, and
+offers replayable continuation suggestions for the points where an author gets stuck.
 
-本仓库只包含核心代码;设计文档、实验记录与第三方语料保留在本地,不随仓库分发。
+This repository contains core code only. Design notes, experiment logs and third-party corpora stay
+out of it.
 
-## 目录结构
+## Layout
 
 ```
-apps/api          FastAPI 后端 (Python 3.12, uv)
+apps/api          FastAPI backend (Python 3.12, uv)
   canonguard/     core / corpus / plot / harness / runs / api / eval / llm / db
-  alembic/        数据库迁移
-  tests/          pytest 用例与合成 fixtures
-apps/web          Next.js 前端 (pnpm workspace)
-packages/contracts OpenAPI 契约与由 openapi.json 生成的类型
-infra/            docker-compose (Postgres / Neo4j / MinIO / Valkey) + Neo4j 约束
-docs/             方法对齐说明
+  alembic/        database migrations
+  tests/          pytest suite and synthetic fixtures
+apps/web          Next.js frontend (pnpm workspace)
+packages/contracts OpenAPI contract and the types generated from openapi.json
+infra/            docker-compose (Postgres / Neo4j / MinIO / Valkey) + Neo4j constraints
+docs/             method alignment notes
 ```
 
-## 环境准备
+## Setup
 
 ```bash
-cp .env.example .env      # 填入 LLM provider 的模型名与 key
+cp .env.example .env      # fill in LLM provider model names and API keys
 make setup                # uv sync + pnpm install
-make up                   # 启动 infra (宿主机端口 5433/7688 避让本地实例)
-make init                 # alembic upgrade head + MinIO bucket 初始化
+make up                   # start infra (host ports 5433/7688 avoid local instances)
+make init                 # alembic upgrade head + MinIO bucket bootstrap
 ```
 
-## 运行
+## Run
 
 ```bash
 make api                  # 127.0.0.1:8100
 make web                  # localhost:3000
 ```
 
-## 校验
+## Verify
 
 ```bash
 make test                 # pytest
 make check                # ruff / mypy / typecheck / lint
-make contracts            # 重新导出 openapi.json 并生成前端类型
+make contracts            # re-export openapi.json and regenerate frontend types
 ```
 
-CI (`.github/workflows/ci.yml`) 会跑同一套检查,并强制 `openapi.json` 与生成的类型不产生漂移。
+CI (`.github/workflows/ci.yml`) runs the same checks and fails if `openapi.json` or the generated
+types drift from the committed versions.
 
-## 数据与授权说明
+## Data and licensing
 
-- `data/` 只提交目录占位(`.gitkeep`)、实体别名表 `data/plot/aliases.yaml` 与合成示例输入
-  `data/eval/*.example.jsonl`、`data/eval/sample_gaps.jsonl`;来源文本、抽取结果、索引与实验产物全部由
-  `.gitignore` 排除。
-- 测试用的 `apps/api/tests/fixtures/` 是为对齐数据格式而手写的合成样例,不含任何第三方语料原文。
-- 研究里用到的 STAGE 数据集未附带许可证(仅限科研用途)、DramaBench 为 MIT;两者都不通过本仓库分发,
-  请按各自条款自行获取。
+- `data/` only tracks directory placeholders (`.gitkeep`), the entity alias table
+  `data/plot/aliases.yaml`, and the synthetic example inputs `data/eval/*.example.jsonl` and
+  `data/eval/sample_gaps.jsonl`. Source texts, extractions, indexes and run artifacts are excluded
+  via `.gitignore`.
+- `apps/api/tests/fixtures/` holds hand-written samples that mirror the data formats; they contain
+  no third-party corpus text.
+- The corpora used in the study are not redistributed here. STAGE ships no license (research use
+  only) and DramaBench is MIT; fetch each under its own terms.
 
-## 许可
+## License
 
-本项目目前为研究原型,未附带开源许可证;在明确授权前不授予任何使用许可。
+Research prototype, no open-source license attached. No usage rights are granted unless explicitly
+authorized.
